@@ -12,7 +12,6 @@
 
                         </div>
                     <?php endif; ?>
-
                     You are logged in!<br>
                     Your key: <?php echo e(Auth::user()->api_token); ?>
 

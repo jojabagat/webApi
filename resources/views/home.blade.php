@@ -13,7 +13,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     You are logged in!<br>
                     Your key: {{Auth::user()->api_token}}
                 </div>
