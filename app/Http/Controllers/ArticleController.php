@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use SoapBox\Formatter\Formatter;
 
 class ArticleController extends Controller
 {
    public function index()
     {
-        return Article::all();
+        // return response()->xml(Article::all());  
+        // return Article::all();
     }
 
     public function show(Article $article)
