@@ -26,10 +26,12 @@
     22 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     23 => 'Laravel\\Tinker\\TinkerServiceProvider',
     24 => 'Asvae\\ApiTester\\ServiceProvider',
-    25 => 'App\\Providers\\AppServiceProvider',
-    26 => 'App\\Providers\\AuthServiceProvider',
-    27 => 'App\\Providers\\EventServiceProvider',
-    28 => 'App\\Providers\\RouteServiceProvider',
+    25 => 'Artisaninweb\\SoapWrapper\\ServiceProvider',
+    26 => 'XmlResponse\\XmlResponseServiceProvider',
+    27 => 'App\\Providers\\AppServiceProvider',
+    28 => 'App\\Providers\\AuthServiceProvider',
+    29 => 'App\\Providers\\EventServiceProvider',
+    30 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -45,10 +47,12 @@
     9 => 'Illuminate\\View\\ViewServiceProvider',
     10 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     11 => 'Asvae\\ApiTester\\ServiceProvider',
-    12 => 'App\\Providers\\AppServiceProvider',
-    13 => 'App\\Providers\\AuthServiceProvider',
-    14 => 'App\\Providers\\EventServiceProvider',
-    15 => 'App\\Providers\\RouteServiceProvider',
+    12 => 'Artisaninweb\\SoapWrapper\\ServiceProvider',
+    13 => 'XmlResponse\\XmlResponseServiceProvider',
+    14 => 'App\\Providers\\AppServiceProvider',
+    15 => 'App\\Providers\\AuthServiceProvider',
+    16 => 'App\\Providers\\EventServiceProvider',
+    17 => 'App\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (
