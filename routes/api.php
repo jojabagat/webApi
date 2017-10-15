@@ -19,4 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 // Route::get('/articles/{key}','ArticleController@index')->middleware("apiAuthentication");
 Route::post("/flightstatus/{key}/{number}/{from}/{to}/{date}","Flight@flightstatus")->middleware("apiAuthentication");
+Route::get('/flight/{key}','FlightController@index')->middleware("apiAuthentication");
 Auth::routes();
