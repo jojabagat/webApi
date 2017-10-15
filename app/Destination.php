@@ -8,4 +8,5 @@ class Destination extends Model
 {
     protected $table = 'destinations';
     protected $primaryKey = 'd_id';
+    protected $fillable = ['d_name'];
 }

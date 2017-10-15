@@ -18,6 +18,7 @@ class CreateFlightTable extends Migration
             $table->integer('fc_id')->unsigned();
             $table->integer('a_id')->unsigned();
             $table->integer('fd_id')->unsigned();
+            $table->integer('depart_des')->unsigned();
             $table->string('flight_no');
             $table->time('depart_time');
             $table->time('arrive_time');
@@ -31,6 +32,7 @@ class CreateFlightTable extends Migration
             $table->foreign('fc_id')->references('fc_id')->on('flight_class')->onDelete('cascade');
             $table->foreign('a_id')->references('a_id')->on('airlines')->onDelete('cascade');
             $table->foreign('fd_id')->references('fd_id')->on('flight_destination')->onDelete('cascade');
+            $table->foreign('depart_des')->references('fd_id')->on('flight_destination')->onDelete('cascade');
         });
     }
 

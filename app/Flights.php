@@ -8,6 +8,7 @@ class Flights extends Model
 {
     protected $table = 'flights';
     protected $primaryKey = 'flight_id';
+    protected $fillable = ['fc_id','a_id','fd_id','depart_des','flight_no','depart_time','arrive_time','total_seats','duration', 'status'];
 
     public function flight_class(){
     	return $this->hasMany('App\FlightClass', 'fc_id', 'flight_id');

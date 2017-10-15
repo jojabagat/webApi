@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Flights;
+use App\FlightDestination;
+use App\FlightClass;
 
 class FlightController extends Controller
 {
@@ -20,6 +22,7 @@ class FlightController extends Controller
                         ->join('destinations', 'destinations.d_id','=','flight_destination.d_id')
                         ->join('flight_class','flight_class.fc_id','=','flights.fc_id')
                         ->join('class', 'class.c_id','=','flight_class.c_id')
+                        ->join('passengers','passengers.f_id','=','flights.flight_id')
                         ->get();
 
         return response()->json($flights, 201);
@@ -43,7 +46,24 @@ class FlightController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $flight = Flights::create(['fc_id'=>$request['fc_id'],
+                                    'a_id'=>$request['a_id'],
+                                    'fd_id'=>$request['fd_id'],
+                                    'depart_des'=>$request['departure'],
+                                    'flight_no'=>$request['flight_no'],
+                                    'depart_time'=>$request['depart_time'],
+                                    'arrive_time'=>$request['arrive_time'],
+                                    'total_seats'=>$request['total_seats'],
+                                    'duration'=>$request['duration'],
+                                    'status'=>1
+                                ]);
+
+            $flight_des = FlightDestination::create(['flight_id'=>$flight->id,
+                                                    'd_id'=>$request['fd_id']
+                                                    ]);
+            $flight_class = FlightClass::create(['flight_id'=>$flight->id,
+                                                'c_id'=>$request['c_id']
+                                                ]);
     }
 
     /**
@@ -77,7 +97,20 @@ class FlightController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id = $request['id'];
+
+        $flight = Flights::where('flight_id', $id)
+                        ->update(['fc_id'=>$request['fc_id'],
+                                    'a_id'=>$request['a_id'],
+                                    'fd_id'=>$request['fd_id'],
+                                    'depart_des'=>$request['departure'],
+                                    'flight_no'=>$request['flight_no'],
+                                    'depart_time'=>$request['depart_time'],
+                                    'arrive_time'=>$request['arrive_time'],
+                                    'total_seats'=>$request['total_seats'],
+                                    'duration'=>$request['duration'],
+                                    'status'=>1
+                        ]);
     }
 
     /**
@@ -88,6 +121,8 @@ class FlightController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $id = $request['id'];
+
+        $flight = Flights::where('flight_id', $id)->delete();
     }
 }
