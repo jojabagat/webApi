@@ -14,4 +14,5 @@ class Flight extends Model
     {
     	return $this->belongsTo("App\FlightDetails");
     }
+
 }

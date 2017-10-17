@@ -11,6 +11,6 @@ class Passenger extends Model
     protected $fillable = ['f_id','fname','lname','contact_no','email','address'];
 
     public function flights(){
-    	return $this->belongsTo('App\Flights');
+    	return $this->belongsTo('App\Flights',"f_id");
     }
 }

@@ -24,20 +24,23 @@
                         </tr>
                         <tr>
                             <td>/api/{Key}</td>
-                            <td>Serves as an authentication for the user to use the api<br>
-                                Can be found when logging in</td>
-                        </tr>
-                         <tr>
-                            <td>flightstatus/{key}/{number}/{from}<br>/{to}/{date}</td>
-                            <td>Number is an optional value, If number is not known put "NULL value on the number and specify the cities in {from}, {to}</td>
-                        </tr>
-                          <tr>
-                            <td>/api/date/{Date}</td>
-                            <td>Returns fl</td>
+                            <td>Starting URL for the API<br>
                         </tr>
                         <tr>
-                            <td>Hello</td>
-                            <td>Hi</td>
+                            <td>/flightstatus/</td>
+                            <td>Displays flight status</td>
+                        </tr>
+                        <tr>
+                            <td>/flightstatus/{number}</td>
+                            <td>Displays flight status' number</td>
+                        </tr>
+                        <tr>
+                            <td>/passenger/</td>
+                            <td>Displays all passengers</td>
+                        </tr>
+                        <tr>
+                            <td>/passenger/{number}</td>
+                            <td>Display a single passenger with his/her corresponding flight.</td>
                         </tr>
                     </table>
                     <center>

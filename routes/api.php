@@ -13,11 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-// Route::get('/articles/{key}','ArticleController@index')->middleware("apiAuthentication");
-Route::post("/flightstatus/{key}/{number}/{from}/{to}/{date}","Flight@flightstatus")->middleware("apiAuthentication");
-Route::get('/flight/{key}','FlightController@index')->middleware("apiAuthentication");
+Route::post("{key}/flightdetails/{number?}","FlightController@index")->middleware("apiAuthentication");
+Route::post("{key}/passengers/{number?}","PassengerController@show")->middleware("apiAuthentication");
 Auth::routes();

@@ -22,6 +22,6 @@ class ApiAuth
             if($request->key == $user->api_token)
                 return $next($request); 
         }
-        return response()->json(array("Authentication"=>"Wrong key"));
+        return response()->json(array("Authentication"=>"Wrong key"),401);
     }
 }

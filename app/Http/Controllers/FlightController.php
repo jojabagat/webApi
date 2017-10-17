@@ -14,20 +14,25 @@ class FlightController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($key, $flightNumber = null)
     {
-        // $flights = Flights::all();
-        $flights = Flights::join('airlines', 'airlines.a_id', '=', 'flights.a_id')
-                        ->join('flight_destination', 'flight_destination.fd_id','=','flights.fd_id')
-                        ->join('destinations', 'destinations.d_id','=','flight_destination.d_id')
-                        ->join('flight_class','flight_class.fc_id','=','flights.fc_id')
-                        ->join('class', 'class.c_id','=','flight_class.c_id')
-                        ->join('passengers','passengers.f_id','=','flights.flight_id')
-                        ->get();
-
-        return response()->json($flights, 201);
+        if(isset($flightNumber))
+        {
+            $flights = Flights::find($flightNumber);
+            return response()->json($flights, 201);
+        }
+        else
+        {
+            $flights = Flights::join('airlines', 'airlines.a_id', '=', 'flights.a_id')
+                            ->join('flight_destination', 'flight_destination.fd_id','=','flights.fd_id')
+                            ->join('destinations', 'destinations.d_id','=','flight_destination.d_id')
+                            ->join('flight_class','flight_class.fc_id','=','flights.fc_id')
+                            ->join('class', 'class.c_id','=','flight_class.c_id')
+                            ->join('passengers','passengers.f_id','=','flights.flight_id')
+                            ->get();
+            return response()->json($flights, 201);
+        }
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -98,7 +103,6 @@ class FlightController extends Controller
     public function update(Request $request, $id)
     {
         $id = $request['id'];
-
         $flight = Flights::where('flight_id', $id)
                         ->update(['fc_id'=>$request['fc_id'],
                                     'a_id'=>$request['a_id'],

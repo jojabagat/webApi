@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Passenger;
+use App\Flights;
 
 class PassengerController extends Controller
 {
@@ -50,11 +51,16 @@ class PassengerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($key, $passengerNumber = NULL)
     {
-        //
+        if(isset($passengerNumber))
+        {
+            $passenger = Passenger::find($passengerNumber);
+            return $passenger->flights;
+        }
+        else
+            return Passenger::all();
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -85,7 +91,6 @@ class PassengerController extends Controller
                                         'address'=>$request['address']
                                         ]);
     }
-
     /**
      * Remove the specified resource from storage.
      *
