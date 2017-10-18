@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Artisaninweb\SoapWrapper\SoapWrapper;
+use nusoap_client;
 
 class SoapController extends Controller
 {
@@ -25,34 +26,34 @@ class SoapController extends Controller
   /**
    * Use the SoapWrapper
    */
-  public function show() 
-  {
-    $this->soapWrapper->add('Currency', function ($service) {
-      $service
-        ->wsdl('http://currencyconverter.kowabunga.net/converter.asmx?WSDL')
-        ->trace(true)
-        ->classmap([
-          GetConversionAmount::class,
-          GetConversionAmountResponse::class,
-        ]);
-    });
 
-    // Without classmap
-    $response = $this->soapWrapper->call('Currency.GetConversionAmount', [
-      'CurrencyFrom' => 'USD', 
-      'CurrencyTo'   => 'EUR', 
-      'RateDate'     => '2014-06-05', 
-      'Amount'       => '1000',
-    ]);
 
-    var_dump($response);
+  public function getFlights(){
+    $client = new nusoap_client("http://localhost:8000/WebApi/public/index.php?wsdl", true);
+        $client->encode_utf8 = false;
+        $client->decode_utf8 = false;           
+        $client->soap_defencoding = 'utf-8';
+        $result = $client->call("getAllFlights",array( 'id'=>'1'));
 
-    // With classmap
-    $response = $this->soapWrapper->call('Currency.GetConversionAmount', [
-      new GetConversionAmount('USD', 'EUR', '2014-06-05', '1000')
-    ]);
-
-    var_dump($response);
-    exit;
+        $error = $client->getError();
+        if($error)
+        {
+            return $error;
+            
+        }
+        else
+        {
+        return $result;
+        }
   }
+
+  public function hello()
+  {
+    $client = new nusoap_client("http://localhost:8000/WebApi/public/injbjhghhjhgdex.php?wsdl", true);
+    $result = $client->call("sendMessage",array( 'name'=>'Richard'));
+    
+    return $result;
+  }
+
+  
 }
